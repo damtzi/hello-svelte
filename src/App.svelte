@@ -1,64 +1,44 @@
 <script lang="ts">
-  let firstName: string = 'Damian';
-  let color: string = 'blue';
-  let showText: boolean = false;
-  let users = [
-    {
-      id: '1',
-      name: 'John',
-    },
-    {
-      id: '2',
-      name: 'Jacob',
-    },
-    {
-      id: '3',
-      name: 'Bob',
-    },
-  ];
-  $: name = firstName;
-
-  const toggle = () => {
-    color = color === 'blue' ? 'red' : 'blue';
-    showText = !showText;
-  };
+  import FeedbackForm from './components/FeedbackForm.svelte';
+  import FeedbackList from './components/FeedbackList.svelte';
+  import FeedbackStats from './components/FeedbackStats.svelte';
 </script>
 
-<main>
-  <h1 style="color: {color}">Hello {name}!</h1>
-  {#if showText}
-    <p>
-      Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-      how to build Svelte apps.
-    </p>
-  {:else}
-    <p>No text</p>
-  {/if}
-  <button on:click={toggle}>Click</button>
-
-  {#each users as user (user.id)}
-    <h3>{user.id}: {user.name}</h3>
-  {/each}
+<main class="container">
+  <FeedbackForm />
+  <FeedbackStats />
+  <FeedbackList />
 </main>
 
 <style>
-  main {
+  header {
+    max-width: 400px;
+    margin: auto;
+  }
+  header h2 {
+    font-size: 22px;
+    font-weight: 600;
     text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
   }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+    border-radius: 8px;
+    margin-top: 15px;
   }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
+  input {
+    flex-grow: 2;
+    border: none;
+    font-size: 16px;
+  }
+  input:focus {
+    outline: none;
+  }
+  .message {
+    padding-top: 10px;
+    text-align: center;
+    color: rebeccapurple;
   }
 </style>
